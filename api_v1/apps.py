@@ -9,10 +9,6 @@ class ApiV1Config(AppConfig):
         dataloaded = []
         if (os.environ.get("DYNO")):
             print('In Heroku Dyno')
-            return True
-        if 'runserver' not in sys.argv:
-            print('Total Data Retrieved = {}'.format(len(dataloaded)))
-            return True
         # you must import your modules here 
         # to avoid AppRegistryNotReady exception
         if settings.LOAD_DATA:
@@ -65,3 +61,6 @@ class ApiV1Config(AppConfig):
                 print('Failed to retrieve data from api endpoint')
         else:
             print('LOAD DATA Flag is FALSE')
+        if 'runserver' not in sys.argv:
+            print('Total Data Retrieved = {}'.format(len(dataloaded)))
+            return True
