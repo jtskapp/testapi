@@ -1,12 +1,15 @@
 from django.apps import AppConfig
 from django.conf import settings
-import sys
+import sys, os
 
 class ApiV1Config(AppConfig):
     name = 'api_v1'
 
     def ready(self):
         dataloaded = []
+        if (os.environ.get("DYNO")):
+            print('In Heroku Dyno')
+            return True
         if 'runserver' not in sys.argv:
             print('Total Data Retrieved = {}'.format(len(dataloaded)))
             return True
