@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://medialoot.com/preview/lumino/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pro-Active Inventory Monitoring</title>
+	<!-- <link href="./Lumino - Dashboard_files/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+  <link href="{% static 'front_end/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'front_end/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'front_end/css/datepicker3.css' %}" rel="stylesheet">
+	<link href="{% static 'front_end/css/styles2.css' %}" rel="stylesheet">
+
+	<!--Custom Font-->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-collapse" aria-expanded="true">
+          <span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+				<a class="navbar-brand" href="{% url 'dashboard' %}">
+          <img id="img-brand" src="{% static 'front_end/images/branding_new.png' %}" alt="bankofamerica">
+          <!-- <span>Lumino</span>Admin -->
+        </a>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="https://medialoot.com/preview/lumino/index.html#">
+						<em class="fa fa-sign-in-alt"></em>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="https://medialoot.com/preview/lumino/index.html#">
+								<div><em class="fa fa-key"></em> Reset Password
+								</div>
+							</a></li>
+							<li><a href="https://medialoot.com/preview/lumino/index.html#">
+								<div><em class="fa fa-sign-out-alt"></em> Logout
+								</div>
+							</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar collapse in" aria-expanded="true" style="">
+		<ul class="nav menu">
+			<li class="active"><a href="https://medialoot.com/preview/lumino/index.html"><em class="fa fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+			<li><a href="#"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
+			<li><a href="https://medialoot.com/preview/lumino/charts.html"><em class="fa fa-chart-bar">&nbsp;</em> Charts</a></li>
+			<li><a href="{% url 'element' %}"><em class="fa fa-toggle-off">&nbsp;</em> UI Elements</a></li>
+			<li><a href="https://medialoot.com/preview/lumino/panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+			<li class="parent">
+        <a data-toggle="collapse" href="https://medialoot.com/preview/lumino/index.html#sub-item-1" class="collapsed" aria-expanded="false">
+				<em class="fa fa-align-justify">&nbsp;</em> Multilevel
+        <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right collapsed" aria-expanded="false">
+          <em class="fa fa-plus"></em></span>
+				</a>
+				<ul class="children collapse" id="sub-item-1" aria-expanded="false" style="height: 0px;">
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+					</a></li>
+				</ul>
+			</li>
+			<li><a href="https://medialoot.com/preview/lumino/login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+
+  <!-- main body content -->
+  {% block content %}
+
+  {% endblock %}
+	<!--/.main-->
+
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+  <!-- Bootstrap JS -->
+  <script src="{% static 'front_end/scripts/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'front_end/scripts/bootstrap.min.js' %}"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- jQuery Custom Scroller CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- fontawesome  -->
+  <script src="{% static 'front_end/scripts/fontawesome.min.js' %}" data-search-pseudo-elements></script>
+  <script src="{% static 'front_end/scripts/solid.min.js' %}" data-search-pseudo-elements></script>
+  <!-- <script src="{% static 'front_end/scripts/fontawesome.min.js' %}" data-search-pseudo-elements></script>
+  <script src="{% static 'front_end/scripts/solid.min.js' %}" data-search-pseudo-elements></script> -->
+
+	<!-- <script src="./Lumino - Dashboard_files/jquery-1.11.1.min.js.download"></script>
+	<script src="./Lumino - Dashboard_files/bootstrap.min.js.download"></script> -->
+  <!-- misc -->
+	<script src="{% static 'front_end/scripts/chart.min.js' %}"></script>
+	<script src="{% static 'front_end/scripts/chart-data.js' %}"></script>
+	<script src="{% static 'front_end/scripts/easypiechart.js' %}"></script>
+	<script src="{% static 'front_end/scripts/easypiechart-data.js' %}"></script>
+	<script src="{% static 'front_end/scripts/bootstrap-datepicker.js' %}"></script>.
+  <script src="{% static 'front_end/scripts/custom.js' %}"></script>
+  <script src="{% static 'front_end/scripts/onload.js' %}"></script>

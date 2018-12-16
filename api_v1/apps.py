@@ -35,6 +35,7 @@ class ApiV1Config(AppConfig):
                         cus_age = customer['age']
                         cus_phone = customer['phone'].decode('utf-8')
                         cus_cell = customer['cell'].decode('utf-8')
+                        cus_image = customer['image'].decode('utf-8')
                         customer = Customer.objects.filter(display_name__iexact=cus_dispname,
                             email_address__iexact=cus_email)
                         if customer.count() > 0:
@@ -53,7 +54,8 @@ class ApiV1Config(AppConfig):
                                 postal_code = cus_postcode,
                                 age = cus_age,
                                 phone = cus_phone,
-                                cell = cus_cell)
+                                cell = cus_cell,
+                                image = cus_image)
                             cust.save()
                 else:
                     print('No data set to be loaded')

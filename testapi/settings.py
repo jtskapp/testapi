@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-LOAD_DATA = True
+LOAD_DATA = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
+print(BASE_DIR)
+print(TEMPLATE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -39,13 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api_v1',
     'rest_framework',
+    'rest_framework.authtoken',
+    'api_v1',
+    'front_end',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,7 +65,7 @@ ROOT_URLCONF = 'testapi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,21 +87,37 @@ REST_FRAMEWORK = {
     # ),
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ]
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'PAGE_SIZE' : 10
 }
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+sql_server = 'mysql01.myforest.net'
+sql_user = 'sa'
+sql_pwd = 'Passw0rd'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'ADUSRINFO',
+        'USER': sql_user,
+        'PASSWORD': sql_pwd,
+        'HOST' : sql_server,
+        'PORT' : '1433',
+        'OPTIONS': {
+            'driver': 'SQL Server Native Client 11.0',
+            'isolation_level': 'READ UNCOMMITTED',  # prevent SELECT deadlocks
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -132,9 +155,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR + '/staticfiles/'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 DOMAIN_NAME = ''
-CSRF_COOKIE_NAME = 'localhost_csrf'    
+CSRF_COOKIE_NAME = 'localhost_csrf'
 CSRF_COOKIE_DOMAIN = DOMAIN_NAME
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'hostname.example.com',
+    'localhost:8000',
+    '127.0.0.1:8000',
+    '127.0.0.1:9000',
+    'localhost:4200',
+    '127.0.0.1:4200',
+    'glacial-savannah-22562.herokuapp.com',
+)

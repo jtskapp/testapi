@@ -16,6 +16,7 @@ class Customer(models.Model):
     age = models.PositiveIntegerField(null=True, blank=True)
     phone = models.CharField(max_length=100, null=True, blank=True)
     cell = models.CharField(max_length=100, null=True, blank=True)
+    image = models.URLField(max_length=1000, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):

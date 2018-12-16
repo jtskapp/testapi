@@ -1,7 +1,7 @@
 import urllib.request, json
 from urllib.error import URLError, HTTPError
 
-max_user = 10
+max_user = 300
 url = 'https://randomuser.me/api/'
 
 def loaddata():
@@ -44,6 +44,7 @@ def loaddata():
                         'age':d['dob']['age'],
                         'phone':(d['phone']).encode('utf-8'),
                         'cell':(d['cell']).encode('utf-8'),
+                        'image':(d['picture']['large']).encode('utf-8'),
                     }
                 )
     

@@ -22,5 +22,6 @@ from rest_framework import routers, serializers, viewsets
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api_v1.urls')),
+    path('ui/', include('front_end.urls')),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

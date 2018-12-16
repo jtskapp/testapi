@@ -1,0 +1,278 @@
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #ffff;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+
+/*
+top navbar styling
+*/
+.navbar {
+    padding: 15px 10px;
+    background: #ffff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+    border-radius: 0;
+}
+
+/* content page stlying */
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #162336;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+/* navbar branding styling */
+#sidebar .sidebar-header img {
+    /* padding top right bottom left*/
+    padding: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #ffffff;
+}
+
+/* sidebar menu */
+#sidebar ul.components {
+    /* padding: 10px 0; */
+    border-bottom: 1px solid #7E909A;
+}
+
+/* #sidebar ul p {
+    color: #fff;
+    padding: 10px;
+} */
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color : #7E909A;
+}
+
+/* menu icon styling */
+#sidebar ul li a .svg-inline--fa {
+  padding-left: 10px;
+  color : #2c6d2c;
+  font-size: 1.2em;
+}
+
+/* .fa-sign-in-alt {
+  margin-right: 10px;
+  color : #2c6d2c;
+} */
+
+/* Login icon styling */
+span .svg-inline--fa {
+  margin-right: 10px;
+  color : #2c6d2c;
+}
+
+/* li a span:after {
+  font-size: 2em;
+} */
+
+/* navbar menu hover styling */
+#sidebar ul li a:hover {
+    color: #ffffff;
+    background: #1C4E80;
+}
+
+/* navbar active parent menu */
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #ffffff;
+    background: #1C4E80;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/* navbar sub menu styling */
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #2c456d;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+/* navbar-top menu  */
+#navbar-top {
+    padding: 10px;
+    width: calc(100% - 250px);
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+}
+
+
+#content {
+    width: calc(100% - 250px);
+    padding-top: 50px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active, #navbar-top.active {
+    width: 100%;
+}
+
+#content-top-page {
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+#content-page-breadcrum {
+  margin: 0px!important;
+  padding: 0px!important;
+}
+
+.breadcrumb-item.active {
+  color: #0080ff;
+}
+
+
+/* -------------------------------------
+font Awesome styling
+---------------------------------------*/
+
+.user-login::before {
+  display: none;
+  font-family: 'Font Awesome 5 Solid';
+  content: "\f2f6";
+}
+
+.glasses::before {
+  display: none;
+  font-family: 'Font Awesome 5 Solid';
+  content: "\f530";
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+
+    /* #img-brand {
+      content:url("http://127.0.0.1:8000/static/front_end/images/logo.png");
+      padding: 5px;
+      max-width: 100%!important;
+      max-height: 100%!important;
+      background-color: #ffffff;
+    } */
+
+    /* .list-unstyled li a span {
+      display: none;
+    } */
+    #content, #navbar-top {
+        width: 100%;
+    }
+    #content.active, #navbar-top.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
