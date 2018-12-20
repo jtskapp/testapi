@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+<<<<<<< HEAD
     'rest_framework.authtoken',
     'api_v1',
     'front_end',
+=======
+>>>>>>> added cors support
     'corsheaders',
 ]
 
@@ -161,7 +164,11 @@ STATICFILES_DIRS = (
 )
 
 DOMAIN_NAME = ''
+<<<<<<< HEAD
 CSRF_COOKIE_NAME = 'localhost_csrf'
+=======
+CSRF_COOKIE_NAME = 'localhost_csrf'    
+>>>>>>> added cors support
 CSRF_COOKIE_DOMAIN = DOMAIN_NAME
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -170,7 +177,10 @@ CORS_ORIGIN_WHITELIST = (
     'google.com',
     'hostname.example.com',
     'localhost:8000',
+<<<<<<< HEAD
     '127.0.0.1:8000',
+=======
+>>>>>>> added cors support
     '127.0.0.1:9000',
     'localhost:4200',
     '127.0.0.1:4200',
