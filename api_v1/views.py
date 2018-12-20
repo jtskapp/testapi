@@ -2,16 +2,13 @@ from django.shortcuts import render
 from api_v1.serializers import CustomerSerializer, UserInfoSerializer
 from rest_framework import generics
 from api_v1.models import Customer
-<<<<<<< HEAD
 from front_end.models import UserInfo
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-=======
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
->>>>>>> eda7667ae57c012e262070310c09410b3faee173
 
 # Create your views here.
 class UserInfoListView(generics.ListAPIView):
@@ -34,16 +31,9 @@ def TotalCount(request):
     }
     return Response(data)
 
-
-<<<<<<< HEAD
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
-=======
-
-
-    
->>>>>>> eda7667ae57c012e262070310c09410b3faee173

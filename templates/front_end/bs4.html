@@ -1,0 +1,257 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'front_end/images/favicon.ico' %}">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="{% static 'front_end/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+    <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" >
+    <!-- Custom styles for this template -->
+    <link href="{% static 'front_end/css/sticky-footer-navbar.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container my_custom_menu">
+      <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
+      <p>Back to <a href="{% url 'bs4' %}">the default sticky footer</a> minus the navbar.</p>
+
+
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-primary">Report 3</h3>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="regionselect">Options</label>
+            </div>
+            <select class="custom-select" id="regionselect">
+              <option value="1">Region 1</option>
+              <option value="2">Region 2</option>
+              <option value="3">Region 3</option>
+            </select>
+          </div> <!-- input-group -->
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="watchcontrolselect2">Options</label>
+            </div>
+            <select class="custom-select" multiple id="watchcontrolselect2" size="2">
+              <option value="1">Watch 1</option>
+              <option value="2">Watch 2</option>
+              <option value="3">Watch 3</option>
+              <option value="4">Watch 4</option>
+              <option value="5">Watch 5</option>
+              <option value="6">Watch 6</option>
+              <option value="7">Watch 7</option>
+            </select>
+          </div> <!-- input-group -->
+        </div>
+
+        <div class="col-lg-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="lobselect2">Options</label>
+            </div>
+            <select class="custom-select" multiple id="lobselect2" size="2">
+              <option value="1">Country 1</option>
+              <option value="2">Country 2</option>
+              <option value="3">Country 3</option>
+              <option value="4">Country 4</option>
+              <option value="5">Country 5</option>
+              <option value="6">Country 6</option>
+              <option value="7">Country 7</option>
+            </select>
+          </div> <!-- input-group -->
+        </div>
+
+        <div class="col-lg-2"><span class="btn btn-primary" onclick="update($(this));"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Update</span>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <!-- dataTable bootstrap styling -->
+      <div class="row">
+        <div class="col-lg-12">
+          <table id="dt_demo" class="table table-striped table-bordered table-hover table-condensed" style="width:100%">
+          <thead>
+              <tr>
+                  <th>SamAccountName</th>
+                  <th>Enabled</th>
+                  <th>Name</th>
+                  <th>ADsPath</th>
+                  <th>CanonicalName</th>
+                  <th>OU</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for user in user_info_list%}
+              <tr>
+                <td>{{ user.samaccountname }}</td>
+                <td>{{ user.enabled }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.adspath }}</td>
+                <td>{{ user.canonicalname }}</td>
+                <td>{{ user.ou }}</td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="6" class="text-danger">No Record Found</td></tr>
+            {% endfor %}
+          </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-info">Report 1 - Total Records = {{ total_count }}</h3>
+          {% regroup user_info_list by ou as regroup_user_list %}
+          {% for user in regroup_user_list%}
+          <li>{{ user.grouper }}, count = {{ user.list|length }}
+            <ul>
+                {% for item in user.list %}
+                  <li>{{ item.name }}: {{ item.adspath }}</li>
+                {% endfor %}
+            </ul>
+          </li>
+          {% empty %}
+            <h5 class="text-danger">No Record Found</h5>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div id="modal-content">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="overflow-y: scroll;">A</div>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="overflow-y: scroll;">
+
+                    {% regroup user_info_list by ou as regroup_user_list %}
+                    {% for user in regroup_user_list%}
+                    <li>{{ user.grouper }}, count = {{ user.list|length }}
+                    </li>
+                    {% empty %}
+                      <h5 class="text-danger">No Record Found</h5>
+                    {% endfor %}
+
+                  </div>
+                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" style="overflow-y: scroll;">
+                    <span>
+                        Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do. Eu ex commodo veniam Lorem aliquip laborum occaecat qui Lorem esse mollit dolore anim cupidatat. Deserunt officia id Lorem nostrud aute id commodo elit eiusmod enim irure amet eiusmod qui reprehenderit nostrud tempor. Fugiat ipsum excepteur in aliqua non et quis aliquip ad irure in labore cillum elit enim. Consequat aliquip incididunt ipsum et minim laborum laborum laborum et cillum labore. Deserunt adipisicing cillum id nulla minim nostrud labore eiusmod et amet. Laboris consequat consequat commodo non ut non aliquip reprehenderit nulla anim occaecat. Sunt sit ullamco reprehenderit irure ea ullamco Lorem aute nostrud magna.<p>
+                        Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do. Eu ex commodo veniam Lorem aliquip laborum occaecat qui Lorem esse mollit dolore anim cupidatat. Deserunt officia id Lorem nostrud aute id commodo elit eiusmod enim irure amet eiusmod qui reprehenderit nostrud tempor. Fugiat ipsum excepteur in aliqua non et quis aliquip ad irure in labore cillum elit enim. Consequat aliquip incididunt ipsum et minim laborum laborum laborum et cillum labore. Deserunt adipisicing cillum id nulla minim nostrud labore eiusmod et amet. Laboris consequat consequat commodo non ut non aliquip reprehenderit nulla anim occaecat. Sunt sit ullamco reprehenderit irure ea ullamco Lorem aute nostrud magna.<p>
+                        Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do. Eu ex commodo veniam Lorem aliquip laborum occaecat qui Lorem esse mollit dolore anim cupidatat. Deserunt officia id Lorem nostrud aute id commodo elit eiusmod enim irure amet eiusmod qui reprehenderit nostrud tempor. Fugiat ipsum excepteur in aliqua non et quis aliquip ad irure in labore cillum elit enim. Consequat aliquip incididunt ipsum et minim laborum laborum laborum et cillum labore. Deserunt adipisicing cillum id nulla minim nostrud labore eiusmod et amet. Laboris consequat consequat commodo non ut non aliquip reprehenderit nulla anim occaecat. Sunt sit ullamco reprehenderit irure ea ullamco Lorem aute nostrud magna.<p>
+                        Sint sit mollit irure quis est nostrud cillum consequat Lorem esse do quis dolor esse fugiat sunt do. Eu ex commodo veniam Lorem aliquip laborum occaecat qui Lorem esse mollit dolore anim cupidatat. Deserunt officia id Lorem nostrud aute id commodo elit eiusmod enim irure amet eiusmod qui reprehenderit nostrud tempor. Fugiat ipsum excepteur in aliqua non et quis aliquip ad irure in labore cillum elit enim. Consequat aliquip incididunt ipsum et minim laborum laborum laborum et cillum labore. Deserunt adipisicing cillum id nulla minim nostrud labore eiusmod et amet. Laboris consequat consequat commodo non ut non aliquip reprehenderit nulla anim occaecat. Sunt sit ullamco reprehenderit irure ea ullamco Lorem aute nostrud magna.<p>
+                        <span class="text-success">Page Ended</span>                          
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="{% static 'front_end/scripts/jquery-3.3.1.slim.min.js' %}"></script> -->
+    <script src="{% static 'front_end/scripts/jquery-slim.min.js' %}"></script>
+    <script src="{% static 'front_end/scripts/popper.min.js' %}"></script>
+    <script src="{% static 'front_end/scripts/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+      console.log($(window).width());
+
+      $('#dt_demo tbody tr').on('click', function () {
+        // alert('row clicked');
+        var celldata = $(this).find('td:nth-child(1)').text();
+        // alert(celldata);
+        // $('#modal-content').html('<h1><span> Total Count =' + {{ total_count }} + '</span></h1>');
+        $('#myModal').modal('show');
+      });
+
+      $(document).ready(function() {
+        $('#dt_demo').DataTable({
+            "sScrollX": true,
+        });
+      });
+    </script>
+  </body>
+</html>
